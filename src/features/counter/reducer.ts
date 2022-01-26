@@ -4,7 +4,7 @@ const initialState: { value: number } = {
   value: 0,
 };
 
-export const CounterReducer = (
+export const counterReducer = (
   state = initialState,
   action: CounterActionTypes
 ): Count => {
