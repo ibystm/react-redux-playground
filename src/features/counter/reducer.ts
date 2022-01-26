@@ -20,8 +20,8 @@ export const CounterReducer = (
         value: state.value - 1,
       };
     default:
-      return initialState;
+      return state;
   }
 };
 
-export const selectCount = (state: RootState) => state.count;
+export const selectCount = (state: RootState) => state.count.value;

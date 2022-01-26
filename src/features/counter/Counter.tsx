@@ -1,12 +1,13 @@
 import React from "react";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { useAppDispatch, useSelector } from "../../app/hooks";
 import styles from "./Counter.module.css";
-import { decrement, increment, selectCount } from "./counterSlice";
+import { decrement, increment } from "./counterActionCreator";
+import { selectCount } from "./reducer";
 
 export function Counter() {
-  const count = useAppSelector(selectCount);
+  const count = useSelector(selectCount);
   const dispatch = useAppDispatch();
-
+  console.log("countの現在地: ", count);
   return (
     <div>
       <div className={styles.row}>
