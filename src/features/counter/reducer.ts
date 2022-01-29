@@ -1,5 +1,6 @@
 import { RootState } from "../../store/index";
 import { ActionTypes, Count, CounterActionTypes } from "./types";
+
 const initialState: { value: number } = {
   value: 0,
 };
