@@ -1,11 +1,6 @@
-import { ActionTypes, LoadingActionTypes } from "./types";
+import { typedAction } from "../../helper/reduxHelper";
 
-export const startLoading = (value: string): LoadingActionTypes => ({
-  type: ActionTypes.startLoading,
-  payload: value,
-});
+export const startLoading = (value: string) =>
+  typedAction("START_LOADING", value);
 
-export const stopLoading = (): LoadingActionTypes => ({
-  type: ActionTypes.stopLoading,
-  payload: undefined,
-});
+export const stopLoading = () => typedAction("STOP_LOADING");

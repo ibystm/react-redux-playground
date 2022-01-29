@@ -1,5 +1,5 @@
 import { RootState } from "../../store/index";
-import { ActionTypes, Loading, LoadingActionTypes } from "./types";
+import { Loading, LoadingActionTypes } from "./types";
 
 const initialState: Loading = {
   loading: false,
@@ -10,16 +10,16 @@ export const loadingReducer = (
   action: LoadingActionTypes
 ): Loading => {
   switch (action.type) {
-    case ActionTypes.stopLoading:
+    case "STOP_LOADING":
       return {
         ...state,
         loading: false,
       };
-    case ActionTypes.startLoading:
+    case "START_LOADING":
       return {
         ...state,
         loading: true,
-        message: action.payload ? action.payload : "",
+        message: action.payload,
       };
     default:
       return state;
