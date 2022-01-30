@@ -12,4 +12,4 @@ export type StopLoadingAction = {
   type: "STOP_LOADING";
 };
 
-export type LoadingActionTypes = StartLoadingAction | StopLoadingAction;
+export type LoadingActions = StartLoadingAction | StopLoadingAction;
