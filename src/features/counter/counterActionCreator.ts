@@ -6,3 +6,8 @@ export const increment = (): CounterActionTypes => ({
 export const decrement = (): CounterActionTypes => ({
   type: ActionTypes.decrement,
 });
+
+export const counterActions = {
+  increment,
+  decrement,
+};

@@ -1,17 +1,20 @@
 import React from "react";
 import { useAppDispatch, useSelector } from "../../app/hooks";
-import { startLoading, stopLoading } from "../loading/loadingActionCreator";
+import { actions } from "../../app/store";
+import { useActions } from "../../store/useActions";
 import styles from "./Counter.module.css";
-import { decrement, increment } from "./counterActionCreator";
 import { selectCount } from "./reducer";
 
 export function Counter() {
   const count = useSelector(selectCount);
   const dispatch = useAppDispatch();
+  const { stopLoading, startLoading, increment, decrement } =
+    useActions(actions);
+
   const loadStart = () => {
-    dispatch(startLoading("ロード中...."));
+    startLoading("ロード中....");
     setTimeout(() => {
-      dispatch(stopLoading());
+      stopLoading();
     }, 3000);
   };
   return (
@@ -20,7 +23,7 @@ export function Counter() {
         <button
           className={styles.button}
           aria-label="Decrement value"
-          onClick={() => dispatch(decrement())}
+          onClick={() => decrement()}
         >
           -
         </button>
@@ -28,7 +31,7 @@ export function Counter() {
         <button
           className={styles.button}
           aria-label="Increment value"
-          onClick={() => dispatch(increment())}
+          onClick={() => increment()}
         >
           +
         </button>
