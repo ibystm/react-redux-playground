@@ -1,4 +1,5 @@
-import { combineReducers, createStore } from "redux";
+import { applyMiddleware, combineReducers, createStore } from "redux";
+import thunk from "redux-thunk";
 import { counterActions } from "../features/counter/counterActionCreator";
 import { counterReducer } from "../features/counter/reducer";
 import { loadingActions } from "../features/loading/loadingActionCreator";
@@ -16,5 +17,5 @@ export const actions = {
 
 export type RootState = ReturnType<typeof RootReducer>;
 
-const store = createStore(RootReducer);
+const store = createStore(RootReducer, applyMiddleware(thunk));
 export default store;
