@@ -1,11 +1,18 @@
 import { combineReducers, createStore } from "redux";
+import { counterActions } from "../features/counter/counterActionCreator";
 import { counterReducer } from "../features/counter/reducer";
+import { loadingActions } from "../features/loading/loadingActionCreator";
 import { loadingReducer } from "../features/loading/reducer";
 
 const RootReducer = combineReducers({
   count: counterReducer,
   loading: loadingReducer,
 });
+
+export const actions = {
+  ...loadingActions,
+  ...counterActions,
+};
 
 export type RootState = ReturnType<typeof RootReducer>;
 
