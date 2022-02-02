@@ -1,6 +1,5 @@
 import React from "react";
-import { useSelector } from "../../app/hooks";
-import { actions } from "../../app/store";
+import { actions, useSelector } from "../../store";
 import { useActions } from "../../store/useActions";
 import styles from "./Counter.module.css";
 import { selectCount } from "./reducer";

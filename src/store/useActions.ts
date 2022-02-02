@@ -1,9 +1,9 @@
 import { useMemo } from "react";
 import { bindActionCreators } from "redux";
-import { useAppDispatch } from "../app/hooks";
+import { useDispatch } from ".";
 
 export function useActions(actions: any, deps?: any[]) {
-  const dispatch = useAppDispatch();
+  const dispatch = useDispatch();
   return useMemo(
     () => {
       return bindActionCreators(actions, dispatch);

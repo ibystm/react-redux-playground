@@ -1,3 +1,8 @@
+import {
+  TypedUseSelectorHook,
+  useDispatch as useRawDispatch,
+  useSelector as useRawSelector,
+} from "react-redux";
 import { applyMiddleware, combineReducers, createStore } from "redux";
 import thunk from "redux-thunk";
 import { counterActions } from "../features/counter/counterActionCreator";
@@ -18,4 +23,10 @@ export const actions = {
 export type RootState = ReturnType<typeof RootReducer>;
 
 const store = createStore(RootReducer, applyMiddleware(thunk));
+
+export const useSelector: TypedUseSelectorHook<RootState> = useRawSelector;
+
+export type AppDispatch = typeof store.dispatch;
+export const useDispatch = () => useRawDispatch<AppDispatch>();
+
 export default store;

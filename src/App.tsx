@@ -1,9 +1,14 @@
 import React from "react";
 import "./App.css";
-import { useSelector } from "./app/hooks";
 import { Counter } from "./features/counter/Counter";
 import { selectLoading } from "./features/loading/reducer";
 import logo from "./logo.svg";
+import { useSelector } from "./store";
+
+// ts-config import 絶対パスにする設定の読み込み
+// eslintの設定について調べる。
+// redux-thunkの書き方
+// react-hooksのテストについて
 
 function App() {
   const loadingState = useSelector(selectLoading);
