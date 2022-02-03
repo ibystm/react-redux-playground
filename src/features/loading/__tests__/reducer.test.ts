@@ -2,6 +2,17 @@ import { loadingReducer } from "../reducer";
 import { Loading, LoadingActions } from "../types";
 
 describe("loading reducer", () => {
+  it("Should start initial state", () => {
+    const loadingMessage = "initial loading";
+    const action: LoadingActions = {
+      type: "START_LOADING",
+      payload: loadingMessage,
+    };
+    const { loading, message } = loadingReducer(undefined, action);
+    expect(loading).toEqual(true);
+    expect(message).toEqual(loadingMessage);
+  });
+
   it("start loading test", () => {
     const loadingMessage = "loading start";
     const action: LoadingActions = {
