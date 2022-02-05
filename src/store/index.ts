@@ -10,7 +10,7 @@ import { counterReducer } from "../features/counter/reducer";
 import { loadingActions } from "../features/loading/loadingActionCreator";
 import { loadingReducer } from "../features/loading/reducer";
 
-const RootReducer = combineReducers({
+export const RootReducer = combineReducers({
   count: counterReducer,
   loading: loadingReducer,
 });
