@@ -36,9 +36,20 @@ export function Counter() {
           +
         </button>
       </div>
-      <button className={styles.button} onClick={loadStart}>
-        Loading開始
-      </button>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-around",
+          width: 350,
+        }}
+      >
+        <button className={styles.button} onClick={loadStart}>
+          Loading開始
+        </button>
+        <button className={styles.button} onClick={loadStart}>
+          reset
+        </button>
+      </div>
     </div>
   );
 }

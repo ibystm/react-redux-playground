@@ -11,6 +11,5 @@ describe("Counter component", () => {
     getByText("-");
     expect(queryByText("+")).toBeInTheDocument();
     expect(getByText("Loading開始")).toBeInTheDocument();
-    debug();
   });
 });
