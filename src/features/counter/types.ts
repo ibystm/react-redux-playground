@@ -10,11 +10,11 @@ export type Count = {
   value: number;
 };
 
-type IncrementAction = {
+export type IncrementAction = {
   type: typeof ActionTypes.increment;
 } & Action;
 
-type DecrementAction = {
+export type DecrementAction = {
   type: typeof ActionTypes.decrement;
 } & Action;
 

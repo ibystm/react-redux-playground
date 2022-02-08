@@ -6,7 +6,7 @@ import { selectCount } from "./reducer";
 
 export function Counter() {
   const count = useSelector(selectCount);
-  const { stopLoading, startLoading, increment, decrement } =
+  const { stopLoading, startLoading, increment, decrement, resetCount } =
     useActions(actions);
 
   const loadStart = () => {
@@ -17,6 +17,7 @@ export function Counter() {
       stopLoading();
     }, Number(countString));
   };
+
   return (
     <div>
       <div className={styles.row}>
@@ -46,7 +47,7 @@ export function Counter() {
         <button className={styles.button} onClick={loadStart}>
           Loading開始
         </button>
-        <button className={styles.button} onClick={loadStart}>
+        <button className={styles.button} onClick={() => resetCount()}>
           reset
         </button>
       </div>
