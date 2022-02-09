@@ -4,6 +4,7 @@ import { Action } from "redux";
 export const ActionTypes = {
   increment: "INCREMENT",
   decrement: "DECREMENT",
+  reset: "RESET",
 } as const;
 
 export type Count = {
@@ -18,4 +19,11 @@ export type DecrementAction = {
   type: typeof ActionTypes.decrement;
 } & Action;
 
-export type CounterActionTypes = IncrementAction | DecrementAction;
+export type ResetAction = {
+  type: typeof ActionTypes.reset;
+} & Action;
+
+export type CounterActionTypes =
+  | IncrementAction
+  | DecrementAction
+  | ResetAction;

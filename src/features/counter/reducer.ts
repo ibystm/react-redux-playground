@@ -2,6 +2,7 @@ import { Action, Dispatch } from "redux";
 import { ThunkAction } from "redux-thunk";
 import { RootActions, RootState } from "../../store/index";
 import { startLoading, stopLoading } from "../loading/loadingActionCreator";
+import { reset } from "./counterActionCreator";
 import { ActionTypes, Count, CounterActionTypes } from "./types";
 
 const initialState: { value: number } = {
@@ -23,6 +24,11 @@ export const counterReducer = (
         ...state,
         value: state.value - 1,
       };
+    case ActionTypes.reset:
+      return {
+        ...state,
+        value: 0,
+      };
     default:
       return state;
   }
@@ -43,6 +49,7 @@ export const resetCount =
     dispatch(startLoading("reset values..."));
     return asyncStop().then((value) => {
       console.log(`value: ${value}`);
+      dispatch(reset());
       dispatch(stopLoading());
     });
   };
