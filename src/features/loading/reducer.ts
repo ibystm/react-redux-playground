@@ -1,30 +1,33 @@
+import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../store/index";
-import { Loading, LoadingActions } from "./types";
+import { Loading } from "./types";
+
+const SLICE_NAME = "loading";
 
 const initialState: Loading = {
   loading: false,
   message: "",
 };
-export const loadingReducer = (
-  state: Loading = initialState,
-  action: LoadingActions
-): Loading => {
-  switch (action.type) {
-    case "STOP_LOADING":
-      return {
-        ...state,
-        message: "",
-        loading: false,
-      };
-    case "START_LOADING":
-      return {
-        ...state,
-        loading: true,
-        message: action.payload,
-      };
-    default:
-      return state;
-  }
+
+const slice = createSlice({
+  name: SLICE_NAME,
+  initialState,
+  reducers: {
+    stopLoading: (state) => {
+      state.message = "";
+      state.loading = false;
+    },
+    startLoading: (state, { payload }) => {
+      state.loading = true;
+      state.message = payload;
+    },
+  },
+});
+
+export const actions = {
+  ...slice.actions,
 };
+
+export const { reducer } = slice;
 
 export const selectLoading = (state: RootState) => state.loading;

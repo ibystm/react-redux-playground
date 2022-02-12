@@ -1,7 +1,7 @@
-import { configureStore, PreloadedState } from "@reduxjs/toolkit";
-import { render as RTLRender, RenderOptions } from "@testing-library/react";
-import { Provider } from "react-redux";
-import { RootReducer, RootState } from "../store/index";
+import {configureStore, PreloadedState} from "@reduxjs/toolkit";
+import {render as RTLRender, RenderOptions} from "@testing-library/react";
+import {Provider} from "react-redux";
+import {reducer as rootReducer, RootState} from "../store/index";
 
 type OGRenderOptions = Omit<RenderOptions, "queries">;
 type CustomOptions = {
@@ -10,7 +10,7 @@ type CustomOptions = {
 
 const render = (ui: React.ReactElement, options?: CustomOptions) => {
   const store = configureStore({
-    reducer: RootReducer,
+    reducer: rootReducer,
     preloadedState: options?.preloadedstore,
   });
   const Wrapper: React.FC = ({ children }) => (
@@ -20,4 +20,5 @@ const render = (ui: React.ReactElement, options?: CustomOptions) => {
 };
 
 export * from "@testing-library/react";
-export { render };
+export {render};
+

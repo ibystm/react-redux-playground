@@ -1,57 +1,54 @@
-import { Action, Dispatch } from "redux";
-import { ThunkAction } from "redux-thunk";
-import { RootActions, RootState } from "../../store/index";
-import { startLoading, stopLoading } from "../loading/loadingActionCreator";
-import { reset } from "./counterActionCreator";
-import { ActionTypes, Count, CounterActionTypes } from "./types";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { RootState } from "../../store/index";
+
+const SLICE_NAME = "count";
 
 const initialState: { value: number } = {
   value: 0,
 };
 
-export const counterReducer = (
-  state = initialState,
-  action: CounterActionTypes
-): Count => {
-  switch (action.type) {
-    case ActionTypes.increment:
-      return {
-        ...state,
-        value: state.value + 1,
-      };
-    case ActionTypes.decrement:
-      return {
-        ...state,
-        value: state.value - 1,
-      };
-    case ActionTypes.reset:
-      return {
-        ...state,
-        value: 0,
-      };
-    default:
-      return state;
-  }
+const asyncActions = {
+  lazyReset: createAsyncThunk(
+    `${SLICE_NAME}/asyncStop`,
+    () =>
+      new Promise<void>((resolve) => {
+        setTimeout(() => {
+          resolve();
+        }, 500);
+      })
+  ),
 };
 
-const asyncStop = () => {
-  return new Promise<void>((resolve) => {
-    setTimeout(() => {
-      resolve();
-    }, 3000);
-  });
+const slice = createSlice({
+  name: SLICE_NAME,
+  initialState,
+  reducers: {
+    increment: (state) => {
+      state.value = state.value + 1;
+    },
+    decrement: (state) => {
+      state.value = state.value - 1;
+    },
+    reset: (state) => {
+      state.value = 0;
+    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(asyncActions.lazyReset.pending, (state, action) => {
+        // TODO
+      })
+      .addCase(asyncActions.lazyReset.fulfilled, (state) => {
+        state.value = 0;
+      });
+  },
+});
+
+export const counterActions = {
+  ...slice.actions,
+  ...asyncActions,
 };
 
-// TODO RootActionsの型は要検討
-export const resetCount =
-  (): ThunkAction<void, RootState, undefined, RootActions> =>
-  (dispatch: Dispatch<Action>) => {
-    dispatch(startLoading("reset values..."));
-    return asyncStop().then((value) => {
-      console.log(`value: ${value}`);
-      dispatch(reset());
-      dispatch(stopLoading());
-    });
-  };
+export const { reducer } = slice;
 
 export const selectCount = (state: RootState) => state.count.value;

@@ -2,22 +2,16 @@ import React from "react";
 import "./App.css";
 import { Counter } from "./features/counter/Counter";
 import styles from "./features/counter/Counter.module.css";
-import { stopLoading } from "./features/loading/loadingActionCreator";
 import { selectLoading } from "./features/loading/reducer";
 import logo from "./logo.svg";
-import { useSelector } from "./store";
-import { useDispatch } from "./store/index";
-
-// ts-config import 絶対パスにする設定の読み込み
-// redux-thunkの書き方
-// react-hooksのテストについて
+import { actions, useSelector } from "./store";
+import { useActions } from "./store/useActions";
 
 function App() {
   const loadingState = useSelector(selectLoading);
-  const dispatch = useDispatch();
-
+  const { stopLoading } = useActions(actions);
   const forceLoadStop = () => {
-    dispatch(stopLoading());
+    stopLoading();
   };
   return loadingState.loading ? (
     <div className="App">
